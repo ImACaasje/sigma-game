@@ -1,2 +1,2 @@
 # sigma game
-## sigma
+## (._.)
