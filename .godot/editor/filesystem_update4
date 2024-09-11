@@ -1,0 +1,11 @@
+res://player.tscn
+res://idle.gd
+res://app.tscn
+res://move.gd
+res://StateMachine.gd
+res://player.gd
+res://state.gd
+res://jump.gd
+res://fall.gd
+res://player/player.tscn
+res://README.md

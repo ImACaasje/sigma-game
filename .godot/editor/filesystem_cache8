@@ -1,3 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1726067177
+::res://::1726079142
+app.tscn::PackedScene::2435385067776628389::1726079136::0::1::::<><>::uid://2orhcvdmhm2d::::res://player/player.tscn
+fall.gd::GDScript::-1::1726079067::0::1::::<>State<>::
 icon.svg::CompressedTexture2D::8112183424629936425::1726067172::1726067177::1::::<><>::
+idle.gd::GDScript::-1::1726078762::0::1::::<>State<>::
+jump.gd::GDScript::-1::1726079034::0::1::::<>State<>::
+move.gd::GDScript::-1::1726078576::0::1::::<>State<>::
+README.md::TextFile::-1::1726067402::0::1::::<><>::
+state.gd::GDScript::-1::1726077353::0::1::::State<>Node<>::
+StateMachine.gd::GDScript::-1::1726078915::0::1::::StateMachine<>Node<>::
+::res://player/::1726079136
+adventurer-v1.5-Sheet.png::CompressedTexture2D::5350766269147987192::1726068320::1726079130::1::::<><>::
+player.gd::GDScript::-1::1726078931::0::1::::<>CharacterBody2D<>::
+player.tscn::PackedScene::1925044893858300641::1726079148::0::1::::<><>::res://player/player.gd<>uid://cih7lrsd3l8wq::::res://player/adventurer-v1.5-Sheet.png<>res://idle.gd<>res://StateMachine.gd<>res://move.gd<>res://jump.gd<>res://fall.gd
+::res://states/::1726079142
