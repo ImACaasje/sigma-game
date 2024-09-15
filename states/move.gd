@@ -3,6 +3,7 @@ extends State
 @export var idle: State
 @export var jump: State
 @export var fall: State
+@export var crouch: State
 
 func init() -> void:
 	super()
@@ -10,6 +11,8 @@ func init() -> void:
 func unhandled_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
 		return jump
+	if Input.is_action_pressed("crouch"):
+		return crouch
 		
 	return null
 

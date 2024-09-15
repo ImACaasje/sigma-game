@@ -16,10 +16,10 @@ func init(parent: CharacterBody2D, speed: int, animated_sprite: AnimatedSprite2D
 	for child in get_children():
 		child.body = parent
 		child.animated_sprite = animated_sprite
-		child.move_speed = speed
 	change_state(start_state)
 		
 func process_frame(delta: float) -> void:
+	print(current_state)
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)

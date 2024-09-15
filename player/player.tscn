@@ -1,15 +1,58 @@
-[gd_scene load_steps=30 format=3 uid="uid://2orhcvdmhm2d"]
+[gd_scene load_steps=43 format=3 uid="uid://2orhcvdmhm2d"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_xr8ao"]
 [ext_resource type="Texture2D" uid="uid://cih7lrsd3l8wq" path="res://player/adventurer-v1.5-Sheet.png" id="2_6s8hy"]
 [ext_resource type="Script" path="res://states/idle.gd" id="2_fjo55"]
 [ext_resource type="Script" path="res://states/StateMachine.gd" id="2_ymgxl"]
+[ext_resource type="Texture2D" uid="uid://d1owlelvmqxfb" path="res://player/adventurer-hand-combat-Sheet.png" id="3_55eys"]
 [ext_resource type="Script" path="res://states/move.gd" id="5_obxtv"]
 [ext_resource type="Script" path="res://states/jump.gd" id="6_7g4ei"]
 [ext_resource type="Script" path="res://states/fall.gd" id="7_72s1g"]
+[ext_resource type="Script" path="res://player/move.gd" id="9_lmt08"]
+[ext_resource type="Script" path="res://player/idle.gd" id="10_d5x0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjjsq"]
 size = Vector2(11, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3tye"]
+atlas = ExtResource("2_6s8hy")
+region = Rect2(200, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8562w"]
+atlas = ExtResource("2_6s8hy")
+region = Rect2(250, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8cuo"]
+atlas = ExtResource("2_6s8hy")
+region = Rect2(300, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykdbh"]
+atlas = ExtResource("2_6s8hy")
+region = Rect2(0, 37, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6116"]
+atlas = ExtResource("3_55eys")
+region = Rect2(150, 259, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tvya"]
+atlas = ExtResource("3_55eys")
+region = Rect2(200, 259, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrma3"]
+atlas = ExtResource("3_55eys")
+region = Rect2(250, 259, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ing36"]
+atlas = ExtResource("3_55eys")
+region = Rect2(300, 259, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pgil"]
+atlas = ExtResource("3_55eys")
+region = Rect2(0, 296, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj8qs"]
+atlas = ExtResource("3_55eys")
+region = Rect2(50, 296, 50, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4x7sq"]
 atlas = ExtResource("2_6s8hy")
@@ -93,6 +136,46 @@ region = Rect2(300, 37, 50, 37)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_soccy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3tye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8562w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8cuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykdbh")
+}],
+"loop": true,
+"name": &"crouch_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6116")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tvya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrma3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ing36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pgil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj8qs")
+}],
+"loop": true,
+"name": &"crouch_walk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4x7sq")
@@ -185,26 +268,27 @@ shape = SubResource("RectangleShape2D_wjjsq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_soccy")
-animation = &"jump"
+animation = &"crouch_walk"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.71412
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
 script = ExtResource("2_ymgxl")
 start_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move", "jump")]
+[node name="idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move", "jump", "crouch")]
 script = ExtResource("2_fjo55")
 move = NodePath("../move")
 jump = NodePath("../jump")
+crouch = NodePath("../crouch_idle")
 animation = "idle"
 
-[node name="move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "jump", "fall")]
+[node name="move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "jump", "fall", "crouch")]
 script = ExtResource("5_obxtv")
 idle = NodePath("../idle")
 jump = NodePath("../jump")
 fall = NodePath("../fall")
+crouch = NodePath("../crouch_move")
 animation = "run"
 
 [node name="jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall", "idle")]
@@ -219,3 +303,17 @@ script = ExtResource("7_72s1g")
 idle = NodePath("../idle")
 move = NodePath("../move")
 animation = "fall"
+
+[node name="crouch_move" type="Node" parent="StateMachine" node_paths=PackedStringArray("move", "crouch_idle")]
+script = ExtResource("9_lmt08")
+move = NodePath("../move")
+crouch_idle = NodePath("../crouch_idle")
+animation = "crouch_walk"
+move_speed = 100
+
+[node name="crouch_idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle", "crouch_move")]
+script = ExtResource("10_d5x0b")
+idle = NodePath("../idle")
+crouch_move = NodePath("../crouch_move")
+animation = "crouch_idle"
+move_speed = 100
