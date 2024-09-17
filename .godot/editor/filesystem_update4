@@ -1,6 +1,6 @@
+res://dialogue.tscn
 res://app.tscn
 res://player/player.tscn
-res://states/idle.gd
-res://states/StateMachine.gd
-res://player/move.gd
-res://states/move.gd
+res://samurai_npc.tscn
+res://dialogue.gd
+res://samurai_npc.gd

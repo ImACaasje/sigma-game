@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://bniovncymxccq"]
+
+[ext_resource type="Texture2D" uid="uid://b6upud10rkj8t" path="res://IDLE.png" id="1_cjyfe"]
+[ext_resource type="Script" path="res://samurai_npc.gd" id="1_xqdfq"]
+[ext_resource type="PackedScene" uid="uid://bw3a1rltiu4qo" path="res://dialogue.tscn" id="2_n4swj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ethio"]
+size = Vector2(37, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjxsn"]
+atlas = ExtResource("1_cjyfe")
+region = Rect2(0, 56, 93, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xawne"]
+atlas = ExtResource("1_cjyfe")
+region = Rect2(93, 56, 93, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0acgi"]
+atlas = ExtResource("1_cjyfe")
+region = Rect2(186, 56, 93, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7571e"]
+atlas = ExtResource("1_cjyfe")
+region = Rect2(279, 56, 93, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibqxq"]
+atlas = ExtResource("1_cjyfe")
+region = Rect2(372, 56, 93, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6xtp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjxsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xawne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0acgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7571e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibqxq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="SamuraiNPC" type="Area2D"]
+script = ExtResource("1_xqdfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6)
+shape = SubResource("RectangleShape2D_ethio")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g6xtp")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0241912
+flip_h = true
+
+[node name="Dialogue" parent="." instance=ExtResource("2_n4swj")]
+position = Vector2(81, -22)
+char_name = "Samurai"
+text = Array[String](["Greetings dear traveler.", "Welcome to the sacred world of [insert cool name] land. I'm the samurai in town, *wink wink*. ", "If you have any questions, please come return and ask me.", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"])
+name_color = Color(0.700788, 0, 0.290292, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

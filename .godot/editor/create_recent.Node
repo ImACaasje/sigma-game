@@ -1,8 +1,13 @@
-Node
+CanvasLayer
+Node2D
+Timer
+Label
 CollisionShape2D
-StaticBody2D
-ColorRect
 Area2D
 Camera2D
+Sprite2D
+Node
 AnimatedSprite2D
+StaticBody2D
+ColorRect
 CharacterBody2D

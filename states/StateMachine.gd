@@ -8,7 +8,7 @@ extends Node
 func change_state(state: State):
 	if current_state:
 		current_state.exit()
-	
+	print((current_state.name if current_state else "None") + " -> " + state.name)
 	current_state = state
 	current_state.init()
 
@@ -19,7 +19,6 @@ func init(parent: CharacterBody2D, speed: int, animated_sprite: AnimatedSprite2D
 	change_state(start_state)
 		
 func process_frame(delta: float) -> void:
-	print(current_state)
 	var new_state = current_state.process_frame(delta)
 	if new_state:
 		change_state(new_state)

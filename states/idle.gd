@@ -9,7 +9,6 @@ func init() -> void:
 
 func unhandled_input(event: InputEvent) -> State:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
-		print("idle -> move")
 		return move
 	if Input.is_action_just_pressed("jump"):
 		return jump
