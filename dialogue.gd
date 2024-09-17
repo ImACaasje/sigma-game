@@ -43,7 +43,7 @@ func next_line() -> void:
 	wait_for_input = false
 	clear_text()
 	
-func next_character() -> void:
+func next_character() -> void: 
 	if current_character_index < text[current_line].length():
 		current_text = current_text + text[current_line][current_character_index]
 		current_character_index += 1

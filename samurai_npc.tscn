@@ -66,9 +66,9 @@ flip_h = true
 
 [node name="Dialogue" parent="." instance=ExtResource("2_n4swj")]
 position = Vector2(81, -22)
-char_name = "Samurai"
+char_name = "Super Samurai "
 text = Array[String](["Greetings dear traveler.", "Welcome to the sacred world of [insert cool name] land. I'm the samurai in town. ", "Please come to my dojo for practice.", "So you dont die immedeatly lol, (skill issue ngl)"])
 time_between_characters = 0.05
-name_color = Color(0.786504, 0, 0.20173, 1)
+name_color = Color(0.179913, 0.441146, 0.63848, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
