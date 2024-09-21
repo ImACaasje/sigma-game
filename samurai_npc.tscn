@@ -78,5 +78,6 @@ position = Vector2(14, 30)
 shape = SubResource("RectangleShape2D_hv4jy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="on_dialogue_end" from="Dialogue" to="." method="_on_dialogue_on_dialogue_end"]
 [connection signal="interaction" from="Interactable" to="." method="_on_interactable_interaction"]
 [connection signal="on_entered" from="Interactable" to="." method="_on_interactable_on_entered"]

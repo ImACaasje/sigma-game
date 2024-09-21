@@ -11,7 +11,7 @@ extends Node
 @onready var bottom_right_arrows: Label = $arrows
 @onready var skip_timer: Timer = $skip_timer
 
-signal quit_dialogue
+signal on_dialogue_end
 
 var current_character_index: int = 0
 var current_text: String = ""
@@ -49,6 +49,8 @@ func next_line() -> void:
 	wait_for_input = false
 	clear_text()
 func reset() -> void:
+	skip_timer.stop()
+	$Timer.stop()
 	current_character_index = 0
 	current_line = 0
 	current_text = ""
@@ -71,7 +73,7 @@ func next_character() -> void:
 
 func exit() -> void:
 	reset()
-	quit_dialogue.emit()
+	on_dialogue_end.emit()
 	if block_player_movement: SignalBus.unblock_player_movement.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
