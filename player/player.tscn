@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://2orhcvdmhm2d"]
+[gd_scene load_steps=78 format=3 uid="uid://2orhcvdmhm2d"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_xr8ao"]
 [ext_resource type="Texture2D" uid="uid://cih7lrsd3l8wq" path="res://player/adventurer-v1.5-Sheet.png" id="2_6s8hy"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cr113lmhwvuhs" path="res://player/run_right.png" id="7_ohoff"]
 [ext_resource type="Script" path="res://player/move.gd" id="9_lmt08"]
 [ext_resource type="Script" path="res://player/idle.gd" id="10_d5x0b"]
+[ext_resource type="PackedScene" uid="uid://cjh02dpgq3odw" path="res://interactable.tscn" id="15_hslsm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjjsq"]
 size = Vector2(11, 20)
@@ -480,6 +481,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_he65k"]
+size = Vector2(20, 23)
+
 [node name="SmexyPlayer" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
 script = ExtResource("1_xr8ao")
 state_machine = NodePath("StateMachine")
@@ -548,3 +552,9 @@ jump = NodePath("../jump")
 fall = NodePath("../fall")
 animation = "crouch_idle"
 move_speed = 100
+
+[node name="Interactable" parent="." instance=ExtResource("15_hslsm")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_he65k")

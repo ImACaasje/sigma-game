@@ -7,6 +7,7 @@ extends Node
 var body: CharacterBody2D
 var animated_sprite: AnimatedSprite2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var shared_data: Dictionary = {}
 
 func init() -> void:
 	if animated_sprite: animated_sprite.play(animation)

@@ -6,6 +6,7 @@ extends State
 
 func init() -> void:
 	super()
+	body.velocity.x = 0
 
 func unhandled_input(event: InputEvent) -> State:
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):

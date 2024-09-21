@@ -1,0 +1,4 @@
+extends Node
+
+signal block_player_movement
+signal unblock_player_movement

@@ -1,10 +1,12 @@
 extends Node
-
 @export var char_name: String = "Name;"
-@export var text: Array[String] = ["Line1", "Line2", "Etc."]
+@export_multiline var text: Array[String] = ["Line1", "Line2", "Etc."]
+@export_subgroup("Settings")
 @export var time_between_characters: float = 0.025
 @export var skip_timer_time: float = 0.25
 @export var name_color: Color = Color.WHITE
+@export var block_player_movement: bool = false
+@export var auto_start: bool = false
 
 @onready var bottom_right_arrows: Label = $arrows
 @onready var skip_timer: Timer = $skip_timer
@@ -24,12 +26,16 @@ func _ready() -> void:
 	$name.label_settings.font_color = name_color
 	bottom_right_arrows.visible = false
 	skip_timer.wait_time = skip_timer_time
+	if auto_start:
+		start_dialogue()
 	
 	
-func start_dialogue() -> void: 
+func start_dialogue() -> void:
+	reset() 
 	$name.visible = true
 	$text.visible = true
 	$Sprite2D.visible = true
+	if block_player_movement: SignalBus.block_player_movement.emit()
 	$Timer.start()
 	
 func set_text() -> void:
@@ -40,6 +46,16 @@ func next_line() -> void:
 	current_line += 1
 	current_text = ""
 	current_character_index = 0
+	wait_for_input = false
+	clear_text()
+func reset() -> void:
+	current_character_index = 0
+	current_line = 0
+	current_text = ""
+	$name.visible = false
+	$text.visible = false
+	$arrows.visible = false
+	$Sprite2D.visible = false
 	wait_for_input = false
 	clear_text()
 	
@@ -53,14 +69,18 @@ func next_character() -> void:
 		bottom_right_arrows.visible = true
 		wait_for_input = true
 
+func exit() -> void:
+	reset()
+	quit_dialogue.emit()
+	if block_player_movement: SignalBus.unblock_player_movement.emit()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if wait_for_input and Input.is_action_just_pressed("click") and is_in_click_area:
 		if current_line < text.size() - 1:
 			bottom_right_arrows.visible = false
 			next_line()
 		else:
-			queue_free()
-			quit_dialogue.emit()
+			exit()
 			
 	elif Input.is_action_just_pressed("click") and is_in_click_area:
 		if skip_timer.time_left == 0:

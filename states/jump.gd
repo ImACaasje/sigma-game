@@ -4,7 +4,7 @@ extends State
 @export var idle: State
 @export var jump_height: int = 100
 
-func init():
+func init() -> void:
 	super()
 	body.velocity.y = -jump_height
 

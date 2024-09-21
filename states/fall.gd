@@ -3,7 +3,7 @@ extends State
 @export var idle: State
 @export var move: State
 
-func init():
+func init() -> void:
 	super()
 	
 func process_physics(delta: float) -> State:

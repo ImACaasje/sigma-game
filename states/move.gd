@@ -20,8 +20,8 @@ func process_physics(delta: float) -> State:
 	var dir: int = Input.get_axis("left", "right")
 	
 	if dir: animated_sprite.flip_h = dir < 0
-	
 	body.velocity.x = dir * move_speed
+	
 	body.move_and_slide()
 	
 	if dir == 0:

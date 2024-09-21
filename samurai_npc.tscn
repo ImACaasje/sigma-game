@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bniovncymxccq"]
+[gd_scene load_steps=12 format=3 uid="uid://bniovncymxccq"]
 
 [ext_resource type="Texture2D" uid="uid://b6upud10rkj8t" path="res://IDLE.png" id="1_cjyfe"]
 [ext_resource type="Script" path="res://samurai_npc.gd" id="1_xqdfq"]
 [ext_resource type="PackedScene" uid="uid://bw3a1rltiu4qo" path="res://dialogue.tscn" id="2_n4swj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ethio"]
-size = Vector2(37, 32)
+[ext_resource type="PackedScene" uid="uid://cjh02dpgq3odw" path="res://interactable.tscn" id="4_dq7h0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjxsn"]
 atlas = ExtResource("1_cjyfe")
@@ -50,12 +48,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv4jy"]
+size = Vector2(36, 33)
+
 [node name="SamuraiNPC" type="Area2D"]
 script = ExtResource("1_xqdfq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 6)
-shape = SubResource("RectangleShape2D_ethio")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_g6xtp")
@@ -65,10 +62,21 @@ frame_progress = 0.0241912
 flip_h = true
 
 [node name="Dialogue" parent="." instance=ExtResource("2_n4swj")]
-position = Vector2(81, -22)
+position = Vector2(58, -14)
 char_name = "Super Samurai "
 text = Array[String](["Greetings dear traveler.", "Welcome to the sacred world of [insert cool name] land. I'm the samurai in town. ", "Please come to my dojo for practice.", "So you dont die immedeatly lol, (skill issue ngl)"])
 time_between_characters = 0.05
 name_color = Color(0.179913, 0.441146, 0.63848, 1)
+block_player_movement = true
+
+[node name="Interactable" parent="." instance=ExtResource("4_dq7h0")]
+position = Vector2(-15, -24)
+interaction_action_needed = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(14, 30)
+shape = SubResource("RectangleShape2D_hv4jy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="interaction" from="Interactable" to="." method="_on_interactable_interaction"]
+[connection signal="on_entered" from="Interactable" to="." method="_on_interactable_on_entered"]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://baxyo3kpl0xk4"]
+[gd_scene load_steps=5 format=3 uid="uid://baxyo3kpl0xk4"]
 
 [ext_resource type="PackedScene" uid="uid://2orhcvdmhm2d" path="res://player/player.tscn" id="1_aaquk"]
-[ext_resource type="PackedScene" uid="uid://bw3a1rltiu4qo" path="res://dialogue.tscn" id="2_7fayr"]
 [ext_resource type="PackedScene" uid="uid://bniovncymxccq" path="res://samurai_npc.tscn" id="3_mye8d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ucuau"]
@@ -17,10 +16,6 @@ position = Vector2(52, 69)
 
 [node name="Camera2D" type="Camera2D" parent="SmexyPlayer"]
 zoom = Vector2(2, 2)
-
-[node name="Dialogue" parent="SmexyPlayer" instance=ExtResource("2_7fayr")]
-z_index = 1
-position = Vector2(-571, -314)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
